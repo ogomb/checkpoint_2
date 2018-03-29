@@ -1,4 +1,4 @@
-package checkpoint.andela.db.spec;
+package checkpoint.andela.db;
 
 import org.jongo.MongoCollection;
 import org.junit.Before;
@@ -36,3 +36,4 @@ public class ReactionDbSpec {
         verify(mongoCollection, times(1)).save(file);
     }
 }
+
