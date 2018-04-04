@@ -18,9 +18,13 @@ public class ReactionDb {
             mongoCollection = new Jongo(database).getCollection("reactions");
         }
 
-        public boolean saveMode(RecordBean bean){
-            getMongoCollection().save(bean);
-            return true;
+        public boolean saveRecord(RecordBean bean){
+            try {
+                getMongoCollection().save(bean);
+                return true;
+            } catch (Exception exception){
+                return false;
+            }
 
         }
 }
