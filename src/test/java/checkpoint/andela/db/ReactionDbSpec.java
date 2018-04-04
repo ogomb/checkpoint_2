@@ -71,6 +71,16 @@ public class ReactionDbSpec {
         assertTrue(collection.drop());
     }
 
+    @Test
+    public void givenExceptionWhenDropThenReturnFalse(){
+        doThrow(new MongoException("Exception"))
+                .when(mongoCollection)
+                .drop();
+        doReturn(mongoCollection).when(collection)
+                .getMongoCollection();
+        assertFalse(collection.drop());
+    }
+
 
 }
 
