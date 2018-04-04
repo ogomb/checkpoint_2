@@ -1,5 +1,6 @@
 package checkpoint.andela.db;
 
+import com.mongodb.MongoException;
 import org.jongo.MongoCollection;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class ReactionDbSpec {
     }
 
     @Test
-    public void whenSaveModeThenInvokeMongoCollectionSave(){
+    public void whenSaveRecordThenInvokeMongoCollectionSave(){
         doReturn(mongoCollection).when(collection).getMongoCollection();
         collection.saveRecord(bean);
         verify(mongoCollection, times(1)).save(bean);
@@ -43,6 +44,16 @@ public class ReactionDbSpec {
     public void whenSaveModeThenReturnTrue(){
         doReturn(mongoCollection).when(collection).getMongoCollection();
         assertTrue(collection.saveRecord(bean));
+    }
+
+    @Test
+    public void givenExceptionWhenSaveRecordThenReturnFalse(){
+        doThrow(new MongoException("Exception"))
+                .when(mongoCollection)
+                .save(any(RecordBean.class));
+        doReturn(mongoCollection).when(collection)
+                .getMongoCollection();
+        assertFalse(collection.saveRecord(bean));
     }
 
 
