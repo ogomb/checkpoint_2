@@ -64,6 +64,13 @@ public class ReactionDbSpec {
         verify(mongoCollection).drop();
     }
 
+    @Test
+    public void whenDropThenReturnTrue(){
+        doReturn(mongoCollection).when(collection)
+                .getMongoCollection();
+        assertTrue(collection.drop());
+    }
+
 
 }
 
