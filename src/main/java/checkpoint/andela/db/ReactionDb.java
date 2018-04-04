@@ -28,8 +28,9 @@ public class ReactionDb {
 
         }
 
-        public void drop(){
+        public boolean drop(){
             getMongoCollection().drop();
+            return true;
         }
 }
 
