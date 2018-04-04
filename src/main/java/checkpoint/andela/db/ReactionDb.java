@@ -29,8 +29,12 @@ public class ReactionDb {
         }
 
         public boolean drop(){
-            getMongoCollection().drop();
-            return true;
+            try {
+                getMongoCollection().drop();
+                return true;
+            } catch (Exception exception){
+                return false;
+            }
         }
 }
 
