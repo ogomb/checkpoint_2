@@ -56,6 +56,14 @@ public class ReactionDbSpec {
         assertFalse(collection.saveRecord(bean));
     }
 
+    @Test
+    public void whenDropThenInvokeMongoCollectionDrop(){
+        doReturn(mongoCollection).when(collection)
+                .getMongoCollection();
+        collection.drop();
+        verify(mongoCollection).drop();
+    }
+
 
 }
 
