@@ -1,5 +1,6 @@
 package checkpoint.andela.db;
 
+import checkpoint.andela.model.RecordBean;
 import com.mongodb.MongoException;
 import org.jongo.MongoCollection;
 import org.junit.Before;
@@ -25,7 +26,7 @@ public class ReactionDbSpec {
     @Test
     public void whenInstantiatedThenMongoHasDBNameReactionDb(){
         assertEquals("ReactionDb", collection.getMongoCollection()
-                .getDBCollection().getDB().getNme());
+                .getDBCollection().getDB().getName());
     }
 
     @Test
