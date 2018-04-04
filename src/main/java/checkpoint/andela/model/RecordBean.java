@@ -12,6 +12,10 @@ public class RecordBean {
     private String LEFT;
     private String RIGHT;
 
+    public RecordBean(){
+
+    }
+
     public RecordBean(String UNIQUEID, String COMMONNAME,
                  String TYPES, String CREDIT,
                  String ECNUMBER, String ENZYMATICREACTION,
