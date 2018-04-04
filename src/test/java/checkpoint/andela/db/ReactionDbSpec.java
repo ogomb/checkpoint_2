@@ -29,11 +29,10 @@ public class ReactionDbSpec {
 
     @Test
     public void whenSaveModeThenInvokeMongoCollectionSave(){
-        FileToSave file = new FileToSave();
+        RecordBean bean = new RecordBean();
         MongoCollection mongoCollection = mock(MongoCollection.class);
         doReturn(mongoCollection).when(collection).getMongoCollection();
-        collection.saveMode(file);
-        verify(mongoCollection, times(1)).save(file);
+        assertTrue(collection.saveMode(bean));
     }
 }
 
