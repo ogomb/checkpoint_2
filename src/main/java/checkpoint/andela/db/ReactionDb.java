@@ -1,5 +1,6 @@
 package checkpoint.andela.db;
 
+import checkpoint.andela.model.RecordBean;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import org.jongo.Jongo;
