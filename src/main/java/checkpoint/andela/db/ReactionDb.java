@@ -27,5 +27,9 @@ public class ReactionDb {
             }
 
         }
+
+        public void drop(){
+            getMongoCollection().drop();
+        }
 }
 
