@@ -18,8 +18,9 @@ public class ReactionDb {
             mongoCollection = new Jongo(database).getCollection("reactions");
         }
 
-        public void saveMode(RecordBean bean){
+        public boolean saveMode(RecordBean bean){
             getMongoCollection().save(bean);
+            return true;
 
         }
 }
