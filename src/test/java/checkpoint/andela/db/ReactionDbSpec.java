@@ -1,6 +1,6 @@
 package checkpoint.andela.db;
 
-import checkpoint.andela.model.RecordBean;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import org.jongo.MongoCollection;
 import org.junit.Before;
@@ -12,15 +12,14 @@ import static org.mockito.Mockito.*;
 
 public class ReactionDbSpec {
     ReactionDb collection;
-    RecordBean bean;
     MongoCollection mongoCollection;
+    BasicDBObject basicDBObject;
 
     @Before
     public void before() throws UnknownHostException {
         collection = spy(new ReactionDb());
-        //this is where you instantiate a record to be saved.
-        bean = new RecordBean();
         mongoCollection = mock(MongoCollection.class);
+        basicDBObject = new BasicDBObject();
     }
 
     @Test
@@ -37,24 +36,24 @@ public class ReactionDbSpec {
     @Test
     public void whenSaveRecordThenInvokeMongoCollectionSave(){
         doReturn(mongoCollection).when(collection).getMongoCollection();
-        collection.saveRecord(bean);
-        verify(mongoCollection, times(1)).save(bean);
+        collection.saveRecord(basicDBObject);
+        verify(mongoCollection, times(1)).save(basicDBObject);
     }
 
     @Test
     public void whenSaveModeThenReturnTrue(){
         doReturn(mongoCollection).when(collection).getMongoCollection();
-        assertTrue(collection.saveRecord(bean));
+        assertTrue(collection.saveRecord(basicDBObject));
     }
 
     @Test
     public void givenExceptionWhenSaveRecordThenReturnFalse(){
         doThrow(new MongoException("Exception"))
                 .when(mongoCollection)
-                .save(any(RecordBean.class));
+                .save(any(BasicDBObject.class));
         doReturn(mongoCollection).when(collection)
                 .getMongoCollection();
-        assertFalse(collection.saveRecord(bean));
+        assertFalse(collection.saveRecord(basicDBObject));
     }
 
     @Test

@@ -1,6 +1,5 @@
 package checkpoint.andela.db;
 
-import checkpoint.andela.model.RecordBean;
 import org.junit.Before;
 import org.junit.Test;
 
