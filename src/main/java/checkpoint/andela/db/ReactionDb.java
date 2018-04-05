@@ -1,6 +1,6 @@
 package checkpoint.andela.db;
 
-import checkpoint.andela.model.RecordBean;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import org.jongo.Jongo;
@@ -19,9 +19,9 @@ public class ReactionDb {
             mongoCollection = new Jongo(database).getCollection("reactions");
         }
 
-        public boolean saveRecord(RecordBean bean){
+        public boolean saveRecord(BasicDBObject record){
             try {
-                getMongoCollection().save(bean);
+                getMongoCollection().save(record);
                 return true;
             } catch (Exception exception){
                 return false;
