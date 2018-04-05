@@ -35,6 +35,5 @@ public class DBWriterSpec {
         record.put("UNIQUEID","23QEQE");
         record.put("COMMON-NAME","DFDFWEREAD");
         dBWriter.saveRecord(record);
-//        verify(collection.saveRecord(record));
     }
 }
