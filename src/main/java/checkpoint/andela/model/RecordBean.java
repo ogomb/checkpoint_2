@@ -1,16 +1,16 @@
 package checkpoint.andela.model;
 
 public class RecordBean {
-    private String UNIQUEID;
-    private String COMMONNAME;
-    private String TYPES;
-    private String CREDIT;
-    private String ECNUMBER;
-    private String ENZYMATICREACTION;
-    private String INPATHWAY;
-    private String SYSTEMATICNAME;
-    private String LEFT;
-    private String RIGHT;
+    private String UNIQUEID = null;
+    private String COMMONNAME = null;
+    private String TYPES = null;
+    private String CREDIT = null;
+    private String ECNUMBER = null;
+    private String ENZYMATICREACTION= null;
+    private String INPATHWAY = null;
+    private String SYSTEMATICNAME = null;
+    private String LEFT = null;
+    private String RIGHT = null;
 
     public RecordBean(){
 

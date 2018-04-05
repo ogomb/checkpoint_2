@@ -22,13 +22,13 @@ public class DBWriterSpec {
 
     @Test
     public void whenInstantiatedThenSetReactionDB(){
-        assertNotNull(dBWriter.getDBWritter());
+        assertNotNull(dBWriter.getReactionDb());
     }
 
     @Test
     public void whenRecordIsAvailableThenSaveRecordIsInvoked(){
         RecordBean record = new RecordBean();
-        dBWriter.save();
+        dBWriter.saveRecord(record);
         verify(collection.saveRecord(record));
     }
 }
