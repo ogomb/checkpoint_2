@@ -24,9 +24,9 @@ public class FileReader {
                         .getLeft(line)
                         .getSystematicName(line);
                 if (line.startsWith("//")) {
-                    System.out.println(parser.getSet());
+                    System.out.println(parser.getMap());
                     parser.clearSet();
-                    System.out.println(parser.getSet());
+                    System.out.println(parser.getMap());
                 }
                 continue;
 
