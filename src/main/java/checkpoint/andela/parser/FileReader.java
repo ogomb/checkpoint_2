@@ -33,7 +33,7 @@ public class FileReader {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("Cant find file");
+            System.out.println("Can't find file");
         } catch (IOException e) {
             System.out.println("Unable to read file");
         }
