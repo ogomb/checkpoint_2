@@ -2,6 +2,7 @@ package checkpoint.andela.parser;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class FileParser {
     private Map<String,String> map;
@@ -69,8 +70,20 @@ public class FileParser {
             map.put("SYSTEMATICNAME",line);
         return sParseFile;
     }
-    public Map< String,String> getSet(){
-        return map;
+    public Map<String, String> getMap(){
+        Map<String, String> cleanedPair = new HashMap<>();
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            String value = entry.getValue();
+            Scanner scanner = new Scanner(value);
+            scanner.useDelimiter(" - ");
+
+            String name = scanner.next();
+            String content = scanner.next();
+
+            cleanedPair.put(name, content);
+        }
+
+        return cleanedPair;
     }
     public void clearSet(){
         map.clear();
