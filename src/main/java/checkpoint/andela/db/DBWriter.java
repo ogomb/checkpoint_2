@@ -1,5 +1,7 @@
 package checkpoint.andela.db;
 
+import checkpoint.andela.model.RecordBean;
+
 import java.net.UnknownHostException;
 
 public class DBWriter {
@@ -15,5 +17,9 @@ public class DBWriter {
 
     protected DBWriter(ReactionDb collection){
         reactionDb = collection;
+    }
+
+    private void saveRecord(RecordBean bean){
+        getReactionDb().saveRecord(bean);
     }
 }
