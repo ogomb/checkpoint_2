@@ -1,7 +1,7 @@
 package checkpoint.andela.db;
 
 import checkpoint.andela.model.RecordBean;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import com.mongodb.BasicDBObject;
 
 import java.net.UnknownHostException;
 import java.util.Map;
@@ -21,7 +21,13 @@ public class DBWriter {
         reactionDb = collection;
     }
 
-    public void saveRecord(RecordBean bean){
-        getReactionDb().saveRecord(bean);
+    public void saveRecord(Map<String, String> record){
+        BasicDBObject recordToSave = new BasicDBObject();
+        for (Map.Entry<String, String> entry : record.entrySet()){
+            String value = entry.getValue();
+            String key = entry.getKey();
+            recordToSave.put(key, value);
+        }
+        getReactionDb().saveRecord(recordToSave);
     }
 }
