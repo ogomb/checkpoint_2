@@ -1,5 +1,6 @@
 package checkpoint.andela.db;
 
+import checkpoint.andela.model.RecordBean;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +11,9 @@ import static org.mockito.Mockito.*;
 
 public class DBWriterSpec {
 
+    private DBWriter dBWriter;
+    private ReactionDb collection;
+
     @Before
     public final void before() throws UnknownHostException{
         collection = mock(ReactionDb.class);
@@ -19,5 +23,12 @@ public class DBWriterSpec {
     @Test
     public void whenInstantiatedThenSetReactionDB(){
         assertNotNull(dBWriter.getDBWritter());
+    }
+
+    @Test
+    public void whenRecordIsAvailableThenSaveRecordIsInvoked(){
+        RecordBean record = new RecordBean();
+        dBWriter.save();
+        verify(collection.saveRecord(record));
     }
 }
