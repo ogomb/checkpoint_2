@@ -1,12 +1,16 @@
 package checkpoint.andela.parser;
 
+import checkpoint.andela.db.DBWriter;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class FileReader {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
+        DBWriter writer = new DBWriter();
         File file = new File("reactions.dat");
         FileParser  parser = FileParser.getInstance();
 
@@ -24,7 +28,7 @@ public class FileReader {
                         .getLeft(line)
                         .getSystematicName(line);
                 if (line.startsWith("//")) {
-                    System.out.println(parser.getMap());
+                    writer.saveRecord(parser.getMap());
                     parser.clearSet();
                     System.out.println(parser.getMap());
                 }
