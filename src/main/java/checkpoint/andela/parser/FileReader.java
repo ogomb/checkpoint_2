@@ -10,6 +10,21 @@ import java.net.UnknownHostException;
 
 public class FileReader {
     public static void main(String[] args) throws UnknownHostException {
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+
+
         DBWriter writer = new DBWriter();
         File file = new File("reactions.dat");
         FileParser  parser = FileParser.getInstance();
