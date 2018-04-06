@@ -10,7 +10,16 @@ import java.net.UnknownHostException;
 
 public class FileReader {
     FileParser  parser = FileParser.getInstance();
-    public static void main(String[] args) throws UnknownHostException {
+    DBWriter writer;
+    {
+        try {
+            writer = new DBWriter();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args)  {
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -26,7 +35,7 @@ public class FileReader {
         });
 
 
-        DBWriter writer = new DBWriter();
+
         File file = new File("reactions.dat");
 
 
@@ -35,9 +44,7 @@ public class FileReader {
             while ((line = br.readLine()) != null){
 
                 if (line.startsWith("//")) {
-                    writer.saveRecord(parser.getMap());
-                    parser.clearSet();
-                    System.out.println(parser.getMap());
+
                 }
                 continue;
 
@@ -64,5 +71,8 @@ public class FileReader {
                 .getSystematicName(line);
     }
 
-
+    public void consumer(){
+        writer.saveRecord(parser.getMap());
+        parser.clearSet();
+    }
 }
