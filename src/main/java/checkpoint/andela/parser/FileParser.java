@@ -3,13 +3,15 @@ package checkpoint.andela.parser;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class FileParser {
-    private Map<String,String> map;
+    private ConcurrentHashMap<String,String> map;
     private static FileParser sParseFile;
 
     private FileParser(){
-        map = new HashMap<>();
+        map = new ConcurrentHashMap<>();
     }
     public static FileParser getInstance(){
         if (sParseFile == null) {
