@@ -1,6 +1,5 @@
 package checkpoint.andela.db;
 
-import checkpoint.andela.model.RecordBean;
 import com.mongodb.BasicDBObject;
 
 import java.net.UnknownHostException;
