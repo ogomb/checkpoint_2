@@ -3,11 +3,11 @@ package checkpoint.andela.parser;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class FileParser {
-    private ConcurrentHashMap<String,String> map;
+    public Map<String,String> map;
+    public int capacity = 10;
     private static FileParser sParseFile;
 
     private FileParser(){
@@ -81,10 +81,8 @@ public class FileParser {
 
             String name = scanner.next();
             String content = scanner.next();
-
             cleanedPair.put(name, content);
         }
-
         return cleanedPair;
     }
     public void clearSet(){
