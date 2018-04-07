@@ -23,7 +23,6 @@ public class FileReader {
                 try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {
                     String line;
                     while ((line = br.readLine()) != null) {
-                        System.out.println(Thread.currentThread().getName());
                         parser.uniqueId(line)
                                 .getTypes(line)
                                 .getInPathWay(line)
@@ -57,7 +56,6 @@ public class FileReader {
             synchronized (this) {
                 while (parser.map.size() == 0)
                     wait();
-                System.out.println(Thread.currentThread().getName());
                 writer.saveRecord(parser.getMap());
                 parser.clearSet();
 

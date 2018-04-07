@@ -1,7 +1,5 @@
 package checkpoint.andela.main;
 
-import checkpoint.andela.db.DBWriter;
-import checkpoint.andela.parser.FileParser;
 import checkpoint.andela.parser.FileReader;
 
 import java.net.UnknownHostException;
