@@ -1,24 +1,21 @@
 package checkpoint.andela.parser;
 
-import checkpoint.andela.db.DBWriter;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 public class FileReader {
-    public static void main(String[] args) throws UnknownHostException {
-        FileParser  parser = FileParser.getInstance();
-        DBWriter writer = new DBWriter();
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
+    FileParser  parser = FileParser.getInstance();
+
+    public  void producer() throws InterruptedException {
+        while (true) {
+            synchronized (this) {
                 File file = new File("reactions.dat");
-                try(BufferedReader br = new BufferedReader(new java.io.FileReader(file))){
+                try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {
                     String line;
-                    while ((line = br.readLine()) != null){
+                    while ((line = br.readLine()) != null) {
                         System.out.println(Thread.currentThread().getName());
                         parser.uniqueId(line)
                                 .getTypes(line)
@@ -31,23 +28,11 @@ public class FileReader {
                                 .getLeft(line)
                                 .getSystematicName(line);
 
-                        if (line.startsWith("//")) {
-                            Thread thread2 = new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    System.out.println(Thread.currentThread().getName());
-                                    writer.saveRecord(parser.getMap());
-                                    parser.clearSet();
-                                }
-                            });
+                        if (line.startsWith("//"))
+                            wait();
+                        notify();
+                        Thread.sleep(10);
 
-                            thread2.start();
-                            try {
-                                thread2.join();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
                         continue;
                     }
                 } catch (FileNotFoundException e) {
@@ -56,15 +41,8 @@ public class FileReader {
                     System.out.println("Unable to read file");
                 }
             }
-        });
-
-        thread1.start();
-        try {
-            thread1.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
     }
-}
 
+}
