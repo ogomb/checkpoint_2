@@ -10,9 +10,6 @@ public class ExecutorClass {
 
     public static void main(String[] args) throws UnknownHostException {
         FileReader  fileReader = new FileReader();
-        DBWriter writer = new DBWriter();
-        FileParser parser = FileParser.getInstance();
-
 
         Thread thread1 = new Thread(new Runnable() {
             @Override
