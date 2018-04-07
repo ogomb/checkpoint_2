@@ -13,6 +13,7 @@ public class ExecutorClass {
         DBWriter writer = new DBWriter();
         FileParser parser = FileParser.getInstance();
 
+
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -29,7 +30,7 @@ public class ExecutorClass {
             @Override
             public void run() {
                 try {
-                    writer.consumer(parser);
+                    fileReader.consumer();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
